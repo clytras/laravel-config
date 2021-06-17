@@ -1,4 +1,18 @@
-# LytraX JS/TS library
+# Laravel Config
+
+Use Laravel app configuration directly to Node scripts.
+
+Main purpose is for using along with Laravel Mix to extend configurations and pass config values to Webpack, Sass, PostCss and all the available plugins that Mix provides. Nevertheless, it can be used for any node script that will run under the application root directory (*where `bootstrap/` directory is located*).
+
+## Usage
+
+```js
+const AppConfig = require('@lytrax/laravel-config');
+
+const config = AppConfig();
+
+// All of Laravel cached configuration will now be loaded into the config constant
+```
 
 ## Development
 
@@ -18,4 +32,4 @@ Running `np` will have the `version` script executed which will run the `makeRel
 MIT [LICENSE][license]
 
 [commitizen]: https://github.com/commitizen/cz-cli
-[license]: https://github.com/clytras/LXLib/blob/master/LICENSE
+[license]: https://github.com/clytras/laravel-config/blob/master/LICENSE
