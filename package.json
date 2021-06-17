@@ -1,0 +1,108 @@
+{
+  "name": "@lytrax/laravel-config",
+  "description": "Use Laravel app configuration directly to Node scripts",
+  "author": {
+    "name": "Christos Lytras",
+    "email": "christos.lytras@gmail.com"
+  },
+  "version": "0.7.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/laravel-config.esm.js",
+  "typings": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build --entry src/**/*.ts",
+    "test": "tsdx test",
+    "test:coverage": "tsdx test --coverage",
+    "lint": "tsdx lint src",
+    "postinstall": "patch-package",
+    "version": "node ./scripts/makeRelease.js",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "deploy:ci": "np patch --contents=release",
+    "deploy": "np --contents=release",
+    "--preversion": "yarn lint && yarn test",
+    "--postversion": "cross-var publish:git && yarn publish:npm && echo \"Successfully released version $npm_package_version!\"",
+    "--publish:git": "cross-var git add . && git commit -m \"chore(publish): version v$npm_package_version\" && git push --follow-tags && git push",
+    "--publish:npm": "cross-var cross-env npm_config_registry=https://registry.npmjs.org/ npm publish --access=public --tag $npm_package_version",
+    "--release": "np --no-publish",
+    "--postrelease": "npm publish"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": [
+          ".prettierrc",
+          ".babelrc",
+          ".eslintrc"
+        ],
+        "options": {
+          "parser": "json"
+        }
+      }
+    ],
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "size-limit": [
+    {
+      "path": "dist/laravel-config.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/laravel-config.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.9.1",
+    "@types/jest": "^26.0.20",
+    "@types/validator": "^13.1.3",
+    "chalk": "^4.1.0",
+    "cpy": "^8.1.1",
+    "cross-env": "^7.0.3",
+    "cross-var": "^1.1.0",
+    "cz-conventional-changelog": "3.3.0",
+    "del": "^6.0.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "glob-promise": "^3.4.0",
+    "husky": "4",
+    "ora": "5.3.0",
+    "patch-package": "6.2.2",
+    "prettier": "^2.2.1",
+    "recursive-copy": "^2.0.11",
+    "semantic-release": "^17.3.3",
+    "size-limit": "^4.9.1",
+    "tsdx": "0.14.0",
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clytras/laravel-config.git"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

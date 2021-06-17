@@ -1,0 +1,7 @@
+*.log
+.DS_Store
+.watchman*
+node_modules/
+dist/
+release/
+coverage/

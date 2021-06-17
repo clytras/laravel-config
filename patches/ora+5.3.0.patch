@@ -1,0 +1,47 @@
+diff --git a/node_modules/ora/index.js b/node_modules/ora/index.js
+index 6860f9c..21084a5 100644
+--- a/node_modules/ora/index.js
++++ b/node_modules/ora/index.js
+@@ -136,6 +136,7 @@ class Ora {
+ 		this.indent = this.options.indent;
+ 		this.discardStdin = this.options.discardStdin;
+ 		this.isDiscardingStdin = false;
++		this.isStopping = false;
+ 	}
+ 
+ 	get indent() {
+@@ -147,6 +148,10 @@ class Ora {
+ 			throw new Error('The `indent` option must be an integer from 0 and up');
+ 		}
+ 
++		if (indent > this._indent) {
++			this.stream.clearLine(-1);
++		}
++
+ 		this._indent = indent;
+ 	}
+ 
+@@ -275,7 +280,12 @@ class Ora {
+ 				this.stream.moveCursor(0, -1);
+ 			}
+ 
+-			this.stream.clearLine();
++			if (this.isStopping) {
++				this.stream.clearLine();
++			} else {
++				this.stream.clearLine(1);
++			}
++
+ 			this.stream.cursorTo(this.indent);
+ 		}
+ 
+@@ -340,7 +350,9 @@ class Ora {
+ 		clearInterval(this.id);
+ 		this.id = undefined;
+ 		this.frameIndex = 0;
++		this.isStopping = true;
+ 		this.clear();
++		this.isStopping = false;
+ 		if (this.hideCursor) {
+ 			cliCursor.show(this.stream);
+ 		}
