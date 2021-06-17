@@ -6,7 +6,7 @@ interface Options {
   basePath?: string;
 }
 
-function getAppConfig({ basePath }: Options = {}) {
+export default function getAppConfig({ basePath }: Options = {}) {
   const base = basePath ?? process.cwd();
   const cacheConfigFile = path.resolve(
     base,
