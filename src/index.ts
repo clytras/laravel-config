@@ -6,7 +6,7 @@ interface Options {
   basePath?: string;
 }
 
-export default function getAppConfig({ basePath }: Options = {}) {
+export function getLaravelConfig({ basePath }: Options = {}) {
   const base = basePath ?? process.cwd();
   const cacheConfigFile = path.resolve(
     base,
