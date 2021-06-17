@@ -23,7 +23,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build --entry src/**/*.ts",
-    "test": "tsdx test",
+    "test": "tsdx test --passWithNoTests",
     "test:coverage": "tsdx test --coverage",
     "lint": "tsdx lint src",
     "postinstall": "patch-package",
