@@ -16,7 +16,7 @@ const config = getLaravelConfig();
 
 If you want to change the base path root where the `bootstrap/` directory is located, you can use the `basePath` option:
 
-```
+```js
 const { getLaravelConfig } = require('@lytrax/laravel-config');
 
 const config = getLaravelConfig({ basePath: '/my/path/to/app/root' });
