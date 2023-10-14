@@ -5,11 +5,11 @@
     "name": "Christos Lytras",
     "email": "christos.lytras@gmail.com"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/laravel-config.esm.js",
-  "typings": "dist/index.d.ts",
+  "main": "index.js",
+  "module": "laravel-config.esm.js",
+  "typings": "index.d.ts",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
