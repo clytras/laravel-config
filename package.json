@@ -5,7 +5,7 @@
     "name": "Christos Lytras",
     "email": "christos.lytras@gmail.com"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "main": "index.js",
   "module": "laravel-config.esm.js",
