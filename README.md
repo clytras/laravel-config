@@ -36,7 +36,7 @@ or
 sail artisan config:cache
 ```
 
-### How it works
+## How it works
 
 The `getLaravelConfig` function uses PHP CLI to execute a direct command to echo an encoded JSON of the `bootstrap/cache/config.php` file which is the Laravel cached configuration. It uses `process.cwd()` to get the current working directory and use it for the base directory, in which the `bootstrap/` directory should be located. We can change the base directory using the option `basePath`.
 
